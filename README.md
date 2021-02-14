@@ -1,7 +1,7 @@
 # REST API FileManagementServer
 
-This is a file management application providing a REST
-API to upload and delete file globally.
+This is a File Management API Server providing a REST
+API with uploading feature and their removals. And which are accessible over public internet.
 
 The Application is hosted at : https://global-file-upload.herokuapp.com/
 
@@ -18,7 +18,7 @@ The Application is hosted at : https://global-file-upload.herokuapp.com/
 
 The REST API to the example app is described below.
 
-## Signup route
+## SignUp route
 
 ### Request
 
@@ -70,7 +70,7 @@ The REST API to the example app is described below.
     curl --location --request GET 'https://global-file-upload.herokuapp.com/file' \
     --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI5NGY1MzQ2NmY2NjAwMjJjODFmNGEiLCJ1c2VybmFtZSI6InJvaGFuIGt1bWFyIGphaW4iLCJlbWFpbCI6InJvaGFuQGdtYWlsLmNvbSIsImlhdCI6MTYxMzMyMDE4MiwiZXhwIjoxNjEzMzM4MTgyfQ.6ZlPsT4UeVD-RJNRNYDIuI4s58rJLdCfR04s_V5RzF4'
     
-Replace token with valid token for proper execution 
+In curl, provide valid token for proper execution 
 
 ### Response
 
@@ -98,7 +98,8 @@ Replace token with valid token for proper execution
     curl --location --request POST 'https://global-file-upload.herokuapp.com/upload-file' \
     --header 'Authorization: Bearer         eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI5NGY1MzQ2NmY2NjAwMjJjODFmNGEiLCJ1c2VybmFtZSI6InJvaGFuIGt1bWFyIGphaW4iLCJlbWFpbCI6InJvaGFuQGdtYWlsLmNvbSIsImlhdCI6MTYxMzMyMDE4MiwiZXhwIjoxNjEzMzM4MTgyfQ.6ZlPsT4UeVD-RJNRNYDIuI4s58rJLdCfR04s_V5RzF4' \
     --form 'file=@"/home/rohan_kumar_jain/Downloads/IMG_b8d9rd.jpg"'
-   Replace token with valid token and replace file path with valid path for proper execution 
+    
+In curl, provide valid token and file for proper execution. 
 
 ### Response
 
@@ -128,7 +129,7 @@ Replace token with valid token for proper execution
         "fileName":"IMG_b8d9rd.jpg"
     }'
     
-Replace token with valid token and change filename what ever file you want to delete for proper execution 
+In curl, provide valid token and fileName(what ever file you want to delete) for proper execution.
 
 ### Response
 

@@ -29,7 +29,7 @@ exports.signUp = (req, res) => {
                     });
                     userDetails.save((err, doc) => {
                         if (err) return res.status(500).json({ msg: err });
-                        res.json({ msg: 'User Registerd Successfully' });
+                        res.status(201).json({ msg: 'User Created Successfully' });
                     });
                 });
             } else {

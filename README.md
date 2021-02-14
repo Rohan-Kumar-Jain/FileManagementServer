@@ -24,7 +24,14 @@ The REST API to the example app is described below.
 
 `POST /signup`
 
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/
+    curl --location --request POST 'https://global-file-upload.herokuapp.com/signup' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "username":"rohan kumar jain",
+        "email":"rohan@gmail.com",
+        "password":"abc",
+        "confpassword":"abc"
+    }'
 
 ### Response
 
@@ -35,7 +42,7 @@ The REST API to the example app is described below.
     Content-Type: application/json
     Content-Length: 2
 
-    []
+    {"msg": "User Registerd Successfully"}
 
 ## Login route
 
@@ -46,9 +53,9 @@ The REST API to the example app is described below.
     curl --location --request GET 'https://global-file-upload.herokuapp.com/login' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "email":"rohanrakeshjain26@gmail.com",
+        "email":"rohan@gmail.com",
         "password":"abc"
-    }'/
+    }'
 
 ### Response
 
@@ -60,7 +67,7 @@ The REST API to the example app is described below.
     Location: /thing/1
     Content-Length: 36
 
-    {"id":1,"name":"Foo","status":"new"}
+    {"token":"abc"}
 
 
 ## Gets all file uploaded by particular user
@@ -69,7 +76,8 @@ The REST API to the example app is described below.
 
 `GET /file`
 
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/1
+    curl --location --request GET 'https://global-file-upload.herokuapp.com/file' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI5NGY1MzQ2NmY2NjAwMjJjODFmNGEiLCJ1c2VybmFtZSI6InJvaGFuIGt1bWFyIGphaW4iLCJlbWFpbCI6InJvaGFuQGdtYWlsLmNvbSIsImlhdCI6MTYxMzMyMDE4MiwiZXhwIjoxNjEzMzM4MTgyfQ.6ZlPsT4UeVD-RJNRNYDIuI4s58rJLdCfR04s_V5RzF4'
 
 ### Response
 
@@ -80,15 +88,27 @@ The REST API to the example app is described below.
     Content-Type: application/json
     Content-Length: 36
 
-    {"id":1,"name":"Foo","status":"new"}
+    {
+        "msg": [
+            {
+                "_id": "6029505c466f660022c81f4b",
+                "user_id": "60294f53466f660022c81f4a",
+                "file_name": "IMG_b8d9rd.jpg",
+                "link": "https://freebucket.s3.amazonaws.com/IMG_b8d9rd.jpg",
+                "__v": 0
+            }
+        ]
+    }
 
 ## Upload file route
 
 ### Request
 
 `POST /upload-file`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/9999
+    
+    curl --location --request POST 'https://global-file-upload.herokuapp.com/upload-file' \
+    --header 'Authorization: Bearer         eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI5NGY1MzQ2NmY2NjAwMjJjODFmNGEiLCJ1c2VybmFtZSI6InJvaGFuIGt1bWFyIGphaW4iLCJlbWFpbCI6InJvaGFuQGdtYWlsLmNvbSIsImlhdCI6MTYxMzMyMDE4MiwiZXhwIjoxNjEzMzM4MTgyfQ.6ZlPsT4UeVD-RJNRNYDIuI4s58rJLdCfR04s_V5RzF4' \
+    --form 'file=@"/home/rohan_kumar_jain/Downloads/IMG_b8d9rd.jpg"'
 
 ### Response
 
@@ -99,7 +119,15 @@ The REST API to the example app is described below.
     Content-Type: application/json
     Content-Length: 35
 
-    {"status":404,"reason":"Not found"}
+    {
+        "msg": {
+            "_id": "6029505c466f660022c81f4b",
+            "user_id": "60294f53466f660022c81f4a",
+            "file_name": "IMG_b8d9rd.jpg",
+            "link": "https://freebucket.s3.amazonaws.com/IMG_b8d9rd.jpg",
+            "__v": 0
+        }
+    }
 
 ## Delete file route
 
@@ -107,7 +135,12 @@ The REST API to the example app is described below.
 
 `DELETE /delete-file`
 
-    curl -i -H 'Accept: application/json' -d 'name=Bar&junk=rubbish' http://localhost:7000/thing
+    curl --location --request DELETE 'https://global-file-upload.herokuapp.com/delete-file' \
+    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI5NGY1MzQ2NmY2NjAwMjJjODFmNGEiLCJ1c2VybmFtZSI6InJvaGFuIGt1bWFyIGphaW4iLCJlbWFpbCI6InJvaGFuQGdtYWlsLmNvbSIsImlhdCI6MTYxMzMyMDE4MiwiZXhwIjoxNjEzMzM4MTgyfQ.6ZlPsT4UeVD-RJNRNYDIuI4s58rJLdCfR04s_V5RzF4' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "fileName":"IMG_b8d9rd.jpg"
+    }'
 
 ### Response
 
@@ -119,4 +152,6 @@ The REST API to the example app is described below.
     Location: /thing/2
     Content-Length: 35
 
-    {"id":2,"name":"Bar","status":null}
+    {
+        "msg": "File Successfully Deleted!"
+    }

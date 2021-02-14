@@ -3,7 +3,7 @@
 This is a file management application providing a REST
 API to upload and delete file globally.
 
-File management application is deployed on https://global-file-upload.herokuapp.com/
+The Application is hosted at : https://global-file-upload.herokuapp.com/
 
 ## Install
 
@@ -35,12 +35,8 @@ The REST API to the example app is described below.
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
     Status: 200 OK
-    Connection: close
     Content-Type: application/json
-    Content-Length: 2
 
     {"msg": "User Registerd Successfully"}
 
@@ -59,13 +55,8 @@ The REST API to the example app is described below.
 
 ### Response
 
-    HTTP/1.1 201 Created
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
-    Status: 201 Created
-    Connection: close
+    Status: 200 OK
     Content-Type: application/json
-    Location: /thing/1
-    Content-Length: 36
 
     {"token":"abc"}
 
@@ -78,15 +69,13 @@ The REST API to the example app is described below.
 
     curl --location --request GET 'https://global-file-upload.herokuapp.com/file' \
     --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI5NGY1MzQ2NmY2NjAwMjJjODFmNGEiLCJ1c2VybmFtZSI6InJvaGFuIGt1bWFyIGphaW4iLCJlbWFpbCI6InJvaGFuQGdtYWlsLmNvbSIsImlhdCI6MTYxMzMyMDE4MiwiZXhwIjoxNjEzMzM4MTgyfQ.6ZlPsT4UeVD-RJNRNYDIuI4s58rJLdCfR04s_V5RzF4'
+    
+Replace token with valid token for proper execution 
 
 ### Response
 
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
     Status: 200 OK
-    Connection: close
     Content-Type: application/json
-    Content-Length: 36
 
     {
         "msg": [
@@ -109,15 +98,12 @@ The REST API to the example app is described below.
     curl --location --request POST 'https://global-file-upload.herokuapp.com/upload-file' \
     --header 'Authorization: Bearer         eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDI5NGY1MzQ2NmY2NjAwMjJjODFmNGEiLCJ1c2VybmFtZSI6InJvaGFuIGt1bWFyIGphaW4iLCJlbWFpbCI6InJvaGFuQGdtYWlsLmNvbSIsImlhdCI6MTYxMzMyMDE4MiwiZXhwIjoxNjEzMzM4MTgyfQ.6ZlPsT4UeVD-RJNRNYDIuI4s58rJLdCfR04s_V5RzF4' \
     --form 'file=@"/home/rohan_kumar_jain/Downloads/IMG_b8d9rd.jpg"'
+   Replace token with valid token and replace file path with valid path for proper execution 
 
 ### Response
 
-    HTTP/1.1 404 Not Found
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
-    Status: 404 Not Found
-    Connection: close
+    Status: 200 OK
     Content-Type: application/json
-    Content-Length: 35
 
     {
         "msg": {
@@ -141,17 +127,12 @@ The REST API to the example app is described below.
     --data-raw '{
         "fileName":"IMG_b8d9rd.jpg"
     }'
+    
+Replace token with valid token and change filename what ever file you want to delete for proper execution 
 
 ### Response
 
-    HTTP/1.1 201 Created
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
-    Status: 201 Created
-    Connection: close
+    Status: 200 OK
     Content-Type: application/json
-    Location: /thing/2
-    Content-Length: 35
 
-    {
-        "msg": "File Successfully Deleted!"
-    }
+    {"msg": "File Successfully Deleted!"}

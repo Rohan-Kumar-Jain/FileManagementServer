@@ -35,10 +35,10 @@ The REST API to the example app is described below.
 
 ### Response
 
-    Status: 200 OK
+    Status: 201 CREATED
     Content-Type: application/json
 
-    {"msg": "User Registerd Successfully"}
+    {"msg": "User created Successfully"}
 
 ## Login route
 
